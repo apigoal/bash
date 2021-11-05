@@ -1,8 +1,7 @@
 .idea/
 .github.*
 .github.org
-.github.token
-.github.user
+
 
 # Logs
 logs
@@ -90,7 +89,7 @@ dist
 
 # Gatsby files
 .cache/
-# Comment in the public line in if your project uses Gatsby and *not* Next.js
+# Comment in the public line in if your projects uses Gatsby and *not* Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 

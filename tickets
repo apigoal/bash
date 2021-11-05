@@ -1,6 +1,8 @@
 #!/bin/bash
 ## CONFIG
-ACTION="$@"
+ALL="$@"
+ACTION="$1"
+NAME="$2"
 #[ "$ACTION" = "" ] && ACTION="status"
 REPO_LIST=$(cat .repos)
 USER=$(cat .github.user)
@@ -13,21 +15,13 @@ NC='\033[0m' # No Color
 ## START
 COUNTER=1
 
-#for ticket in $TICKETS
-#do
-   #LINE=${input//[$'\t\r\n']}
-   #LINE=$input
-   #echo "$ticket"
-
-   #echo -e "${BLUE}$LINE${NC}"
-   #[ "$URL" ] && eval "$LINE"
-   #echo
-#done
-
-#while IFS= read -r ticket;
 while read -r ticket || [ -n "$ticket" ];
 do
-    echo "$COUNTER: $ticket"
+    LINE="$COUNTER: $ticket"
+    [ "$ACTION" = "create" ] && LINE="rm -rf $FOLDER_NAME"
+    [ "$ACTION" = "delete" ] && LINE="rm -rf $FOLDER_NAME"
+    [ "$ACTION" = "update" ] && LINE="ls > $PROJECT_LIST"
+    echo -e "${BLUE}$LINE${NC}"
     COUNTER=$((COUNTER+1))
 done < $TICKETS
 ## DOCS

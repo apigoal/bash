@@ -4,19 +4,19 @@ bash.apigoal.com - run your many scripts from text file list
 ## Projects
 ```bash
 chmod +x projects
-projects clone
-projects delete
-projects code
-projects browse 
+./projects clone
+./projects delete
+./projects code
+./projects browse 
 
 ```
 
 ## Tickets
 ```bash
 chmod +x tickets
-tickets create
-tickets status
-tickets done
+./tickets create
+./tickets status
+./tickets done
 
 ```
 
