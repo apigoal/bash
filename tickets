@@ -1,0 +1,34 @@
+#!/bin/bash
+## CONFIG
+ACTION="$@"
+#[ "$ACTION" = "" ] && ACTION="status"
+REPO_LIST=$(cat .repos)
+USER=$(cat .github.user)
+TOKEN=$(cat .github.token)
+TICKETS=".tickets"
+## COLORS
+BLUE='\033[1;34m'
+RED='\033[1;35m'
+NC='\033[0m' # No Color
+## START
+COUNTER=1
+
+#for ticket in $TICKETS
+#do
+   #LINE=${input//[$'\t\r\n']}
+   #LINE=$input
+   #echo "$ticket"
+
+   #echo -e "${BLUE}$LINE${NC}"
+   #[ "$URL" ] && eval "$LINE"
+   #echo
+#done
+
+#while IFS= read -r ticket;
+while read -r ticket || [ -n "$ticket" ];
+do
+    echo "$COUNTER: $ticket"
+    COUNTER=$((COUNTER+1))
+done < $TICKETS
+## DOCS
+# https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php

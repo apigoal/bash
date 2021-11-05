@@ -1,0 +1,38 @@
+#!/bin/bash
+## CONFIG
+ACTION="$@"
+#[ "$ACTION" = "" ] && ACTION="status"
+REPO_LIST=".projects"
+USER=$(cat .github.user)
+TOKEN=$(cat .github.token)
+## COLORS
+BLUE='\033[1;34m'
+RED='\033[1;35m'
+NC='\033[0m' # No Color
+## START
+while read -r line || [ -n "$line" ];
+do
+   URL=${line//[$'\t\r\n']}
+   BRANCH=${URL##*/}
+   FOLDER_NAME=${BRANCH//.git}
+   PROJECT_BRANCH=${URL##*/github.com/}
+   URL_AUTH="https://$USER:$TOKEN@github.com/$PROJECT_BRANCH"
+   #FOLDER_NAME=${"sh github.project $URL"}
+   LINE="cd $FOLDER_NAME && git $ACTION && cd .."
+   [ "$ACTION" = "browser" ] && LINE="xdg-open $URL"
+   #[ "$ACTION" = "create" ] && LINE="mkdir $FOLDER_NAME" #&& $FOLDER_NAME >> $PROJECT_LIST
+   [ "$ACTION" = "delete" ] && LINE="rm -rf $FOLDER_NAME"
+   [ "$ACTION" = "update" ] && LINE="ls > $PROJECT_LIST"
+   [ "$ACTION" = "code" ] && LINE="cd $FOLDER_NAME && code && cd.. "
+   [ "$ACTION" = "browse" ] && LINE="cd $FOLDER_NAME && code && cd.. "
+   [ "$ACTION" = "open" ] && LINE="cd $FOLDER_NAME && code && cd.. "
+   [ "$ACTION" = "readme" ] && LINE="xdg-open $FOLDER_NAME/README.md"
+   [ "$ACTION" = "terminal" ] && LINE="xdg-open $FOLDER_NAME/README.md"
+   #[ "$ACTION" != "" ] && echo ""
+   [ "$ACTION" = "" ] && LINE="echo $URL"
+   PRINT=$LINE
+   [ "$ACTION" = "clone" ] && LINE="git clone $URL_AUTH" && PRINT="git clone $URL"
+   [ "$ACTION" != "" ] && echo "" && echo -e "${BLUE}$PRINT${NC}"
+   [ "$URL" ] && eval "$LINE"
+   #echo
+done < $REPO_LIST

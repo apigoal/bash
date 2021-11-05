@@ -1,0 +1,3 @@
+create unit test for is-empty
+create unit test for is-number
+create unit test for is-object
