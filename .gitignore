@@ -1,4 +1,8 @@
 .idea/
+.github.*
+.github.org
+.github.token
+.github.user
 
 # Logs
 logs
