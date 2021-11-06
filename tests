@@ -20,17 +20,10 @@ do
    #FOLDER_NAME=${"sh github.projects $URL"}
    LINE="cd $FOLDER_NAME && git $ACTION && cd .."
    [ "$ACTION" = "browser" ] && LINE="xdg-open $URL"
-   #[ "$ACTION" = "create" ] && LINE="mkdir $FOLDER_NAME" #&& $FOLDER_NAME >> $PROJECT_LIST
-   [ "$ACTION" = "delete" ] && LINE="rm -rf $FOLDER_NAME"
-   [ "$ACTION" = "update" ] && LINE="ls > $PROJECT_LIST"
    [ "$ACTION" = "code" ] && LINE="cd $FOLDER_NAME && code && cd.. "
-   #[ "$ACTION" = "browse" ] && LINE="cd $FOLDER_NAME && code && cd.. "
-   [ "$ACTION" = "open" ] && LINE="cd $FOLDER_NAME && code && cd.. "
-   [ "$ACTION" = "publish" ] && LINE="xdg-open $FOLDER_NAME/README.md"
-   #[ "$ACTION" != "" ] && echo ""
+   [ "$ACTION" = "terminal" ] && LINE="xdg-open $FOLDER_NAME/README.md"
    [ "$ACTION" = "" ] && LINE="echo $URL"
    PRINT=$LINE
-   [ "$ACTION" = "clone" ] && LINE="git clone $URL_AUTH" && PRINT="git clone $URL"
    [ "$ACTION" != "" ] && echo "" && echo -e "${BLUE}$PRINT${NC}"
    [ "$URL" ] && eval "$LINE"
    #echo

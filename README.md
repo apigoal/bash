@@ -1,22 +1,47 @@
 # bash
 bash.apigoal.com - run your many scripts from text file list
 
-## Projects
+## Clone, push, pull many Git Repositories at one time
+```bash
+chmod +x gits
+
+./gits clone
+./gits status
+./gits push
+./gits status 
+
+```
+
+
+## Create, Delete Projects
 ```bash
 chmod +x projects
-./projects clone
+
 ./projects delete
-./projects code
+./projects create
 ./projects browse 
 
 ```
 
-## Tickets
+## Change check status of Tickets
 ```bash
 chmod +x tickets
+
 ./tickets create
 ./tickets status
 ./tickets done
+./tickets assign
+
+```
+
+
+## Open a Tool
+```bash
+chmod +x open
+
+./open code
+./open code
+./open browse
 
 ```
 

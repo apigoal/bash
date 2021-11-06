@@ -18,6 +18,11 @@ COUNTER=1
 while read -r ticket || [ -n "$ticket" ];
 do
     LINE="$COUNTER: $ticket"
+    [ "$ACTION" = "export" ] && LINE="rm -rf $FOLDER_NAME"
+    [ "$ACTION" = "import" ] && LINE="rm -rf $FOLDER_NAME"
+    ## CREATE FOLDER for project with ticket number $ticket
+    ## Create ticket on github for project over API
+    ## prepare all repo + clone it
     [ "$ACTION" = "create" ] && LINE="rm -rf $FOLDER_NAME"
     [ "$ACTION" = "delete" ] && LINE="rm -rf $FOLDER_NAME"
     [ "$ACTION" = "update" ] && LINE="ls > $PROJECT_LIST"
