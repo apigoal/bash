@@ -1,5 +1,9 @@
 # bash
+
+The scripts  helps build projects on devops site
+
 bash.apigoal.com - run your many scripts from text file list
+
 
 ## Clone, push, pull many Git Repositories at one time
 ```bash
